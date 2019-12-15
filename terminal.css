@@ -1,0 +1,117 @@
+/*
+ * terminal styling
+ *
+ */
+
+html, body {
+    background: black;
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}  
+
+.Terminal {
+    background: black;
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    font-family: monospace;
+    font-size: 12px;
+    color: #fff;
+}
+.Terminal .cmd {
+    padding-top: 1px;
+
+}
+.cmd .terminal-input, .terminal-output {
+    margin: 0;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+.cmd-output-wrap {
+    margin: 0;
+    word-wrap: break-all;
+    white-space: pre-wrap;
+}
+.cmd-cursor-line {
+    white-space: break-spaces;
+}
+.cmd-cursor-line-input {
+    position: absolute;
+    z-index: -100;
+    outline: none;
+    border: none;
+    opacity: 0;
+    font-size: 0.2em;
+}
+
+/* DEFAULT ANIMATION */
+@-webkit-keyframes terminal-blink {
+    0%, 50% {
+        background-color: #bbb;
+        background-color: var(--original-color, #bbb);
+        color: #000;
+        color: var(--background, #000);
+    }
+    50.1%, 100% {
+        background-color: inherit;
+        color: inherit;
+    }
+}
+@-moz-keyframes terminal-blink {
+    0%, 50% {
+        background-color: #fff;
+        background-color: var(--original-color, #fff);
+        color: #000;
+        color: var(--background, #000);
+    }
+    50.1%, 100% {
+        background-color: inherit;
+        color: inherit;
+    }
+}
+@keyframes terminal-blink {
+    0%, 50% {
+        background-color: #fff;
+        background-color: var(--original-color, #fff);
+        color: #000;
+        color: var(--background, #000);
+    }
+    50.1%, 100% {
+        background-color: inherit;
+        color: inherit;
+    }
+}
+
+.cmd .cmd-cursor {
+    display: inline-block;
+}
+.cmd .cmd-cursor.cmd-blink span:not(.emoji) span {
+    -webkit-animation: terminal-blink 1s infinite linear;
+       -moz-animation: terminal-blink 1s infinite linear;
+        -ms-animation: terminal-blink 1s infinite linear;
+            animation: terminal-blink 1s infinite linear;
+}
+.cmd .cmd-cursor span:not(.token):not(.inverted) {
+    color: inherit;
+    background-color: inherit;
+}
+.cmd .cmd-cursor * {
+    background-color: transparent;
+}
+
+@supports (--css: variables) {
+    .cmd .cmd-cursor.cmd-blink {
+        color: var(--color, #fff);
+        background-color: var(--background, #000);
+    }
+    .cmd .cmd-cursor.cmd-blink span:not(.emoji) span,
+    .cmd .cmd-cursor.cmd-blink a {
+        -webkit-animation: var(--animation, terminal-blink) 1s infinite linear;
+           -moz-animation: var(--animation, terminal-blink) 1s infinite linear;
+            -ms-animation: var(--animation, terminal-blink) 1s infinite linear;
+                animation: var(--animation, terminal-blink) 1s infinite linear;
+    }
+}

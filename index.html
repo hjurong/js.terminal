@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>terminal.js demo</title>
+        <script src="terminal.js"></script>
+        <link href="terminal.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <script>
+            var t1 = new Terminal()
+            document.body.appendChild(t1.html)
+            t1.print('Hello, world!')
+
+            function loop() {
+                t1.input('', function (input) {
+                    t1.print('echo: ' + input)
+                    loop();
+                });
+            }
+            loop();
+        </script>
+    </body>
+</html>
